@@ -36,13 +36,15 @@ func versionCmd() *cobra.Command {
 				}
 
 				if canUpgrade {
-					fmt.Printf("To upgrade, run \"%s version upgrade\"", os.Args[0])
+					fmt.Printf("To upgrade, run \"%s version upgrade\"\n\n", os.Args[0])
 				} else {
-					fmt.Printf("Up upgrade, run \"%s\"", sdk.ExternalUpgradeCommand())
+					fmt.Printf("Up upgrade, run \"%s\"\n\n", sdk.ExternalUpgradeCommand())
 				}
 			}
 		},
 	}
+
+	cmd.AddCommand(upgradeCmd())
 
 	return &cmd
 }
@@ -53,7 +55,19 @@ func upgradeCmd() *cobra.Command {
 		Short: "Install any pending upgrade to this CLI",
 
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("this is probably your CLI application...")
+			currentVersion := "v1.0.0"
+
+			sdk, err := NewSDK(currentVersion)
+			if err != nil {
+				panic(err)
+			}
+
+			if err := sdk.Upgrade(); err != nil {
+				// our example repo doesn't have the right assets currently
+				// so this will error
+				return
+				// panic(err)
+			}
 		},
 	}
 
