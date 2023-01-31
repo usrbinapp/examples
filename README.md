@@ -2,4 +2,4 @@
 
 | Directory | Description |
 |-----------|-------------|
-| [go/cobra](https://github.com/usrbinapp/examples) | A go example, using [cobra](https://cobra.dev), complete with auto upgrades |
+| [go/cobra](https://github.com/usrbinapp/examples/tree/main/go/cobra) | A go example, using [cobra](https://cobra.dev), complete with auto upgrades |
